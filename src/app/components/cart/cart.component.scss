@@ -1,0 +1,28 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/mixins';
+
+$title_color: $black_text;
+$products_count: $gray_text;
+
+.cart {
+  @include container-responsive;
+
+  &__header {
+    display: flex;
+    align-items: baseline;
+  }
+
+  &__title {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.26;
+    color: $title_color;
+  }
+
+  &__products-count {
+    color: $products_count;
+    font-size: 16px;
+    line-height: 1.3;
+    margin-left: 9px;
+  }
+}

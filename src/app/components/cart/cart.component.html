@@ -1,1 +1,42 @@
 <p>cart works!</p>
+
+<div class="cart">
+  <div class="cart__header">
+    <div class="cart__title">
+      Корзина
+    </div>
+    <div class="cart__products-count">
+      2 товара
+    </div>
+  </div>
+  <form class="cart__form">
+    <fieldset class="card__check-all">
+      <legend>
+        <label for="">
+          Type all
+          <input type="checkbox" #typeAll [checked]="isCheckedAll" (click)="onCheckAll()">
+        </label>
+      </legend>
+    </fieldset>
+    <ul class="card__products">
+      <li class="card__product">
+        <label for="">
+          Item 1
+          <input type="checkbox" #input (change)="onChange()">
+        </label>
+      </li>
+      <li class="card__product">
+        <label for="">
+          Item 2
+          <input type="checkbox" #input (change)="onChange($event)">
+        </label>
+      </li>
+      <li class="card__product">
+        <label for="">
+          Item 3
+          <input type="checkbox" #input (change)="onChange($event)">
+        </label>
+      </li>
+    </ul>
+  </form>
+</div>
