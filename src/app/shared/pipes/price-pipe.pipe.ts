@@ -8,7 +8,7 @@ export class PricePipe implements PipeTransform {
 
   transform(number: any, ...args: any[]): any {
     this.number = number.toString().split(' ');
-    let parse = this.number.join('');
+    const parse = this.number.join('');
 
     if(parse < 10000) {
       return parse;
@@ -21,7 +21,7 @@ export class PricePipe implements PipeTransform {
         resultNumber.unshift(slicedNumbers.join(''));
 
         if(this.number.length < 3 && this.number.length != 0) {
-          let rest = this.number.splice(0).join('');
+          const rest = this.number.splice(0).join('');
           resultNumber.unshift(rest);
         }
       }
