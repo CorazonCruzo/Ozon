@@ -1,0 +1,31 @@
+<div class="cart__info">
+  <div class="cart__order-title">
+    Ваш заказ:
+  </div>
+  <div class="cart__pre-result">
+    <div class="cart__pre-price-wrapper">
+      <div class="cart__pre-price-title">
+        {{countOfProducts}} {{word}} на сумму
+      </div>
+      <div class="cart__pre-price">
+        {{price}}&#8381;
+      </div>
+    </div>
+    <div class="cart__discount-wrapper">
+      <div class="cart__discount-title">
+        Скидка
+      </div>
+      <div class="cart__discount">
+        -{{discount}}&#8381;
+      </div>
+    </div>
+  </div>
+  <div class="cart__result">
+    <div class="cart__result-title">
+      Общая стоимость
+    </div>
+    <div class="cart__result-price">
+      {{price - discount}}&#8381;
+    </div>
+  </div>
+</div>

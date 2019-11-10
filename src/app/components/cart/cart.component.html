@@ -6,37 +6,29 @@
       Корзина
     </div>
     <div class="cart__products-count">
-      2 товара
+      {{countOfProducts}} {{word}}
     </div>
   </div>
   <form class="cart__form">
-    <fieldset class="card__check-all">
-      <legend>
-        <label for="">
-          Type all
-          <input type="checkbox" #typeAll [checked]="isCheckedAll" (click)="onCheckAll()">
-        </label>
-      </legend>
-    </fieldset>
-    <ul class="card__products">
-      <li class="card__product">
-        <label for="">
-          Item 1
-          <input type="checkbox" #input (change)="onChange()">
-        </label>
-      </li>
-      <li class="card__product">
-        <label for="">
-          Item 2
-          <input type="checkbox" #input (change)="onChange($event)">
-        </label>
-      </li>
-      <li class="card__product">
-        <label for="">
-          Item 3
-          <input type="checkbox" #input (change)="onChange($event)">
-        </label>
-      </li>
-    </ul>
+    <div class="cart__head">
+      <app-check-all-box
+        (changed)="onCheckAll($event)"
+        [isChecked]="isCheckedAll"
+        [isDisable]="products.length === 0"
+      ></app-check-all-box>
+      <app-delete-selected-box
+        (clicked)="onDeleteChecked()"
+      ></app-delete-selected-box>
+    </div>
+    <app-product-list
+      [products]="products"
+      (changed)="onChange($event)"
+    ></app-product-list>
+    <app-price
+      [price]="price"
+      [discount]="discount"
+      [countOfProducts]="countOfProducts"
+      [word]="word"
+    ></app-price>
   </form>
 </div>

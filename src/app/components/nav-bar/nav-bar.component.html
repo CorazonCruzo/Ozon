@@ -1,0 +1,42 @@
+<nav class="nav-bar">
+  <img class="nav-bar__logo" [src]="'/assets/images/logo/ozon-logo.svg'" alt="Ozon" width="110" height="24">
+
+
+
+
+  <ul class="nav-bar__common-links">
+    <li class="nav-bar__common-link">
+      <a class="nav-bar__link" [routerLink]="'/catalog'" [routerLinkActive]="'nav-bar__link--active'" [routerLinkActiveOptions]="{ exact: true }">
+        каталог
+      </a>
+    </li>
+    <li class="nav-bar__common-link">
+      <a class="nav-bar__link" [routerLink]="'/'" [routerLinkActive]="'nav-bar__link--active'" [routerLinkActiveOptions]="{ exact: true }">
+        доставка
+      </a>
+    </li>
+    <li class="nav-bar__common-link">
+      <a class="nav-bar__link" [routerLink]="'/'" [routerLinkActive]="'nav-bar__link--active'" [routerLinkActiveOptions]="{ exact: true }">
+        оплата
+      </a>
+    </li>
+    <li class="nav-bar__common-link">
+      <a class="nav-bar__link" [routerLink]="'/'" [routerLinkActive]="'nav-bar__link--active'" [routerLinkActiveOptions]="{ exact: true }">
+        поддержка
+      </a>
+    </li>
+  </ul>
+  <ul class="nav-bar__profile-links">
+    <li class="nav-bar__profile-link">
+      <a class="nav-bar__profile" [routerLink]="'/'" [routerLinkActive]="'nav-bar__link--active'" [routerLinkActiveOptions]="{ exact: true }">
+        <img [src]="'/assets/images/icons/profile-icon.svg'" alt="Профиль" class="nav-bar__profile-icon" width="21" height="21">
+      </a>
+    </li>
+    <li class="nav-bar__profile-link">
+      <a class="nav-bar__cart" [routerLink]="'/cart'" [routerLinkActive]="'nav-bar__link--active'" [routerLinkActiveOptions]="{ exact: true }">
+        <img [src]="'/assets/images/icons/cart-icon.svg'" alt="Корзина" class="nav-bar__cart-icon" width="22" height="21">
+        <div class="nav-bar__cart-counter">{{countOfProducts}}</div>
+      </a>
+    </li>
+  </ul>
+</nav>

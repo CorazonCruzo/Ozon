@@ -1,0 +1,15 @@
+<li class="cart__product">
+  <input
+    class="cart__input-checkbox"
+    [id]="'input_' + product.id" type="checkbox"
+    [ngModel]="product.isChecked"
+    (change)="onChange()"
+  >
+  <span
+    (click)="onSpanChange()"
+
+  ></span>
+  <label [for]="'input_' + product.id">
+    {{product.title}}
+  </label>
+</li>
