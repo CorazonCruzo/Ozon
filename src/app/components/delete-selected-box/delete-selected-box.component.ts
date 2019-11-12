@@ -1,4 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../../shared/services/products.service';
 
 @Component({
   selector: 'app-delete-selected-box',
@@ -6,17 +7,13 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   styleUrls: ['./delete-selected-box.component.scss']
 })
 export class DeleteSelectedBoxComponent implements OnInit {
-  @Output() clicked: EventEmitter<void>;
 
-  constructor() {
-    this.clicked = new EventEmitter<void>();
-  }
+  constructor(private service: ProductsService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onClick() {
-    this.clicked.emit();
+    this.service.deleteChecked();
   }
 
 }
