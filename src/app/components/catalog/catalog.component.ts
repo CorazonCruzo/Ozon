@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../../shared/services/products.service';
+import { FormatTextService } from '../../shared/services/format-text.service';
 
 @Component({
   selector: 'app-catalog',
@@ -6,33 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./catalog.component.scss']
 })
 export class CatalogComponent implements OnInit {
-  number;
-  constructor() { }
+  public isCatalogPage = true;
 
-  ngOnInit() {
+  constructor(private service: ProductsService,
+              private formatTextService: FormatTextService) {}
+
+  ngOnInit() {}
+
+  get countOfProducts() {
+    return this.service.countProductsInCart;
   }
 
-  pricePipe(number) {
-    this.number = number.split(' ');
-    let parse = this.number.join('');
-
-    if(parse < 10000) {
-      return parse;
-    } else {
-      this.number = parse.split('');
-      let resultNumber = [];
-      for (let i = 0; i < this.number.length; i++) {
-        let slicedNumbers = this.number.slice(-3);
-        this.number.splice(this.number.length - 3, 3);
-        resultNumber.unshift(slicedNumbers.join(''));
-
-        if(this.number.length < 3 && this.number.length != 0) {
-          let rest = this.number.splice(0).join('');
-          resultNumber.unshift(rest);
-        }
-      }
-      return resultNumber.join(' ');
-    }
+  word(count) {
+    return this.formatTextService.word(count);
   }
 
 }

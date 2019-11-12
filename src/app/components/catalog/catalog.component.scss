@@ -17,6 +17,7 @@ $products_count: $gray_text;
     font-weight: 800;
     line-height: 1.26;
     color: $title_color;
+    margin-bottom: 44px;
   }
 
   &__products-count {
@@ -24,13 +25,5 @@ $products_count: $gray_text;
     font-size: 16px;
     line-height: 1.3;
     margin-left: 9px;
-  }
-
-  &__cards {
-
-  }
-
-  &__card {
-
   }
 }

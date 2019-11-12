@@ -1,16 +1,14 @@
-<p>catalog works!</p>
-
 <div class="catalog">
   <div class="catalog__header">
     <div class="catalog__title">
-      Дом и сад
+      Кофе в зёрнах
     </div>
     <div class="catalog__products-count">
-      24 товара
+      {{countOfProducts}} {{word(countOfProducts)}}
     </div>
   </div>
-  <ul class="catalog__cards">
-    <li class="catalog__card"></li>card
-  </ul>
+  <app-product-list
+    [isCatalogPage]="isCatalogPage"
+  ></app-product-list>
 </div>
 
