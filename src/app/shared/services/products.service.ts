@@ -117,10 +117,10 @@ export class ProductsService {
     return this.products.filter(item => item.isInCart);
   }
 
-  getCheckedProductsInCart() {
+  async getCheckedProductsInCart() {
     console.log('Список товаров',this.products.filter(item => item.isInCart && item.isChecked));
-    this.checkAllProductsInCart();
-    this.updateStorageState();
+    this.checkAllProductsInCart(false);
+    await this.updateStorageState();
   }
 
   get countProductsInCart() {
@@ -198,9 +198,9 @@ export class ProductsService {
     return this.getProductsInCart().every(item => item.isChecked);
   }
 
-  checkAllProductsInCart(marker: boolean) {
+  async checkAllProductsInCart(marker: boolean) {
     this.getProductsInCart().forEach(item => item.isChecked = marker);
-    this.updateStorageState();
+    await this.updateStorageState();
   }
 
   toggleCheckAllProductsInCart() {
