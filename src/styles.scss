@@ -1,6 +1,16 @@
+@import '~css-star-rating/css/star-rating';
 @import 'assets/styles/normalize.scss';
 @import 'assets/styles/variables.scss';
 @import 'assets/styles/mixins.scss';
+
+.rating {
+  justify-content: flex-end;
+}
+
+.label-value {
+  font-size: 14px !important;
+  color: $gray_text;
+}
 
 body,
 html {
