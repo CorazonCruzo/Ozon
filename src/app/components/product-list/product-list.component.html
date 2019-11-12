@@ -1,7 +1,22 @@
-<ul class="cart__products">
-  <app-product-item
-    *ngFor="let product of products"
-    [product]="product"
-    (changed)="onChange($event)"
-  ></app-product-item>
-</ul>
+<div class="products">
+  <div [ngClass]="{'products__catalog': isCatalogPage}">
+    <app-product-item *ngFor="let product of products; let last = last; let index = index;"
+                      [last]="last" [index]="index" [id]="product.id"
+                      [isCatalogPage]="isCatalogPage"
+    ></app-product-item>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

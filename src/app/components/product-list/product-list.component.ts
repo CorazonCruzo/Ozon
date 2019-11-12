@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ProductsService} from '../../shared/services/products.service';
-import {Product} from '../../shared/models/product';
+import { Component, Input, OnInit } from '@angular/core';
+import { ProductsService } from '../../shared/services/products.service';
 
 @Component({
   selector: 'app-product-list',
@@ -8,18 +7,17 @@ import {Product} from '../../shared/models/product';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  @Input() products: Array<Product>;
-  @Output() changed: EventEmitter<Product>;
+  @Input() isCatalogPage: boolean;
 
-  constructor() {
-    this.changed = new EventEmitter<Product>();
+  constructor(private service: ProductsService) {}
+
+  ngOnInit() {}
+
+  get products() {
+    if (!this.isCatalogPage) {
+      return this.service.getProductsInCart();
+    } else {
+      return this.service.getProducts();
+    }
   }
-
-  ngOnInit() {
-  }
-
-  onChange(product) {
-    this.changed.emit(product);
-  }
-
 }
