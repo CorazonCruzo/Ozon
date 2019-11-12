@@ -1,15 +1,89 @@
-<li class="cart__product">
-  <input
-    class="cart__input-checkbox"
-    [id]="'input_' + product.id" type="checkbox"
-    [ngModel]="product.isChecked"
-    (change)="onChange()"
-  >
-  <span
-    (click)="onSpanChange()"
+<ng-container *ngIf="!isCatalogPage; else catalog">
+  <div class="product-cart__product" >
+    <div class="product-cart__wrapper">
+      <div class="product-cart__input">
+        <input
+          class="product-cart__input-checkbox"
+          [id]="'input_' + product.id" type="checkbox"
+          [ngModel]="product.isChecked"
+          (change)="onChange()"
+        >
+        <span
+          (click)="onSpanChange()"
 
-  ></span>
-  <label [for]="'input_' + product.id">
-    {{product.title}}
-  </label>
-</li>
+        ></span>
+      </div>
+      <img
+        class="product-cart__img"
+        [src]="'/assets/images/products/' + product.image + '.jpg'"
+        [alt]="product.title" width="80" height="80">
+      <div class="product-cart__description">
+        {{product.title}}
+      </div>
+    </div>
+    <div class="product-cart__result-price">
+      {{getPrice(product.price)}}&nbsp;&#8381;
+    </div>
+  </div>
+  <div class="product-cart__line" *ngIf="!last"></div>
+</ng-container>
+<ng-template #catalog>
+  <div class="product-catalog__card"
+    [ngClass]="{'product-catalog__card--last': (index + 1) % 4 === 0}"
+  >
+    <div class="product-catalog__img-wrapper">
+      <img [src]="'/assets/images/products/' + product.image + '.jpg'"
+           class="product-catalog__img"
+           [alt]="product.title" width="216" height="216">
+      <div class="product-catalog__discount-slug" *ngIf="product.discount > 0">
+      -{{product.discount}}%
+      </div>
+    </div>
+    <div class="product-catalog__price">
+      <ng-container *ngIf="product.discount > 0; else simplePrice">
+        <div class="product-catalog__new-price">
+          {{getPriceWithDiscount(product.id, product.price)}}&nbsp;&#8381;
+        </div>
+        <div class="product-catalog__old-price-line">
+          <div class="product-catalog__old-price">
+            {{getPrice(product.price)}}&nbsp;&#8381;
+          </div>
+        </div>
+
+      </ng-container>
+      <ng-template #simplePrice>
+        <div class="product-catalog__simple-price">
+          {{getPrice(product.price)}}&nbsp;&#8381;
+        </div>
+      </ng-template>
+    </div>
+    <div class="product-catalog__description">
+      {{product.title}}
+    </div>
+    <star-rating [starType]="'svg'" [rating]="product.rating" [labelPosition]="'right'" labelText="123К отзывов"
+                 [staticColor]="'ok'" [step]="0.5" [showHalfStars]="true" [readOnly]="true">
+    </star-rating>
+    <div class="product-catalog__rating"></div>
+    <div class="product-catalog__button-wrapper">
+      <button class="product-catalog__button"
+              *ngIf="!isLoading"
+              [ngClass]="{
+            'product-catalog__button--non-in-cart': product.isInCart === false,
+            'product-catalog__button--in-cart': product.isInCart === true
+            }"
+              (click)="toggleStateInCart()"
+      >
+              {{!product.isInCart ? 'В корзину' : 'В корзине'}}
+      </button>
+      <button class="product-catalog__preloader product-catalog__button--non-in-cart product-catalog__button" *ngIf="isLoading">
+        <div>Подождите</div>
+        <div class="lds-ellipsis">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </button>
+    </div>
+  </div>
+</ng-template>
