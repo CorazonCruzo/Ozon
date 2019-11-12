@@ -1,65 +1,60 @@
 @import '../../../assets/styles/variables';
 @import '../../../assets/styles/mixins';
 
-$title_color: $black_text;
-$products_count: $gray_text;
-$form_background: $gray_background;
 $main_text_color: $black_text;
-$description_text_color: $gray_text;
-$delete_text_color: $attention_color;
-$discount_color: $attention_color;
 $checkbox_color: $blue_color;
+$btn_color: $blue_color;
+$btn_in_cart_color: $gray_background;
+$discount_color: $attention_color;
 $line_color: rgba(0, 26, 52, 0.163844);
 
-.cart {
-  @include container-responsive;
-
-  &__header {
-    display: flex;
-    align-items: baseline;
-    margin-bottom: 34px;
-  }
-
-  &__title {
-    font-size: 30px;
+.product-cart {
+  &__result-price {
+    font-size: 20px;
     font-weight: 800;
-    line-height: 1.26;
-    color: $title_color;
-  }
-
-  &__products {
-    @include ul-reset;
-  }
-
-  &__products-count {
-    color: $products_count;
-    font-size: 16px;
     line-height: 1.3;
-    margin-left: 9px;
+    color: $main_text_color;
   }
 
-  &__form {
-    max-width: 696px;
-    margin-right: auto;
-    border: 1px solid red;
+  &__wrapper {
+    display: flex;
+    align-items: center;
   }
 
-  &__head {
+  &__product {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $form_background;
-    font-size: 14px;
-    line-height: 1.28;
-    min-height: 50px;
-    padding: 0 24px;
-    box-sizing: border-box;
+    padding: 7px 24px 24px 24px;
+    background-color: $white_color;
+  }
+
+  &__img {
+    margin: 0 16px;
+    object-fit: contain;
+  }
+
+  &__line {
+    width: 100%;
+    height: 1px;
+    background-color: $line_color;
+  }
+
+  &__description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    max-width: 220px;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 
   &__input-checkbox {
-    //display: none;
+    position: absolute;
+    visibility: hidden;
 
     & + span {
+      cursor: pointer;
       position: relative;
       display: inline-block;
       width: 16px;
@@ -92,98 +87,171 @@ $line_color: rgba(0, 26, 52, 0.163844);
       }
     }
   }
+}
 
-  &__check-all {
-    color: $main_text_color;
+.product-catalog {
+  @include container-responsive;
+
+  &__card {
+    max-width: 216px;
+    margin-right: 24px;
+    margin-bottom: 40px;
+
+    &--last {
+      margin-right: 0;
+    }
   }
 
-  &__delete-checked {
-    color: $delete_text_color;
+  &__img-wrapper {
+    position: relative;
+    width: 216px;
+    height: 216px;
+    margin-bottom: 8px;
   }
 
-  &__order-title {
+  &__img {
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: contain;
+  }
+
+  &__price {
+    display: flex;
+    align-items: baseline;
+  }
+
+  &__new-price {
     font-size: 20px;
     font-weight: 800;
     line-height: 1.3;
-    margin-bottom: 16px;
-  }
-
-  &__info {
-    background-color: $form_background;
-    box-sizing: border-box;
-    padding: 24px;
-  }
-
-  &__pre-price-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-  }
-
-  &__pre-price-title {
-    font-size: 16px;
-    line-height: 1.25;
-    color: $main_text_color;
-  }
-
-  &__pre-price {
-    font-size: 16px;
-    font-weight: 800;
-    line-height: 1.25;
-    color: $main_text_color;
-  }
-
-  &__pre-result {
-    border-bottom: 1px solid $line_color;
-    margin-bottom: 16px;
-  }
-
-  &__result-title {
-    font-size: 20px;
-    font-weight: 800;
-    line-height: 1.3;
-    color: $main_text_color;
-  }
-
-  &__discount-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-  }
-
-  &__discount-title {
-    font-size: 16px;
-    line-height: 1.25;
-    color: $main_text_color;
-  }
-
-  &__discount {
-    font-size: 16px;
-    font-weight: 800;
-    line-height: 1.25;
     color: $discount_color;
+    margin-right: 4px;
   }
 
-  &__result {
+  &__old-price {
+    font-size: 12px;
+    line-height: 1.3;
+    color: $main_text_color;
+  }
+
+  &__old-price-line {
+    color: $discount_color;
+    text-decoration: line-through;
+  }
+
+  &__simple-price {
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: $main_text_color;
+  }
+
+  &__button {
+    @include btn-reset;
+
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.28;
+    border-radius: 3px;
+    padding: 7px 12px;
+    min-height: 32px;
+
+    &--non-in-cart {
+      color: $white_color;
+      background-color: $btn_color;
+    }
+
+    &--in-cart {
+      color: $btn_color;
+      background-color: $btn_in_cart_color;
+    }
+  }
+
+  &__preloader {
     display: flex;
-    justify-content: space-between;
+    max-height: 32px;
+  }
+
+  &__discount-slug {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: flex;
     align-items: center;
-    margin-bottom: 32px;
+    padding-left: 6px;
+    padding-right: 2px;
+    min-height: 20px;
+    border-radius: 3px;
+    background-color: $discount_color;
+    font-size: 12px;
+    line-height: 1.33;
+    color: $white_color;
   }
 
-  &__result-title {
-    font-size: 20px;
-    font-weight: 800;
-    line-height: 1.3;
-    color: $main_text_color;
-  }
-
-  &__result-price {
-    font-size: 20px;
-    font-weight: 800;
-    line-height: 1.3;
-    color: $main_text_color;
+  &__description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    max-width: 220px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-bottom: 6px;
   }
 }
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 10px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: $white_color;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 6px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 6px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 26px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 45px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(19px, 0);
+  }
+}
+

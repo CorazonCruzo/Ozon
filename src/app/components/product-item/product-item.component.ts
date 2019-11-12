@@ -1,34 +1,50 @@
-import {Component, DoCheck, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Product} from '../../shared/models/product';
+import { Component, Input, OnInit } from '@angular/core';
+import { Product } from '../../shared/models/product';
+import { ProductsService } from '../../shared/services/products.service';
+import { FormatTextService } from '../../shared/services/format-text.service';
 
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.scss']
 })
-export class ProductItemComponent implements OnInit, DoCheck {
-  @Input() product: Product;
-  @Output() changed: EventEmitter<Product>;
-  @Input() isChecked: boolean;
+export class ProductItemComponent implements OnInit {
+  @Input() id: string;
+  private product: Product;
+  private isLoading: boolean;
+  @Input() last;
+  @Input() index;
+  @Input() isCatalogPage: boolean;
 
-  constructor() {
-    this.changed = new EventEmitter<Product>();
+  constructor(private service: ProductsService,
+              private formatNumberService: FormatTextService
+              ) {
+    this.isLoading = false;
   }
 
   ngOnInit() {
-    this.isChecked = this.product.isChecked;
-  }
-
-  ngDoCheck(): void {
+    this.product = this.service.getItem(this.id);
   }
 
   onChange() {
-    this.changed.emit(new Product(this.product.id,
-      this.product.title, this.product.price, !this.product.isChecked, this.product.isInCart));
+    this.service.toggleCheckProp(this.id);
   }
 
   onSpanChange() {
     this.onChange();
   }
 
+  async toggleStateInCart() {
+    this.isLoading = true;
+    await this.service.toggleIsInCartProp(this.product.id);
+    this.isLoading = false;
+  }
+
+  getPrice(price) {
+    return this.formatNumberService.formatNumber(price);
+  }
+
+  getPriceWithDiscount(id, price) {
+    return this.formatNumberService.formatNumber(price - this.service.getDiscountSumOfItem(id));
+  }
 }
