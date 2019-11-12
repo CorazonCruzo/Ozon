@@ -1,65 +1,34 @@
 @import '../../../assets/styles/variables';
 @import '../../../assets/styles/mixins';
 
-$title_color: $black_text;
-$products_count: $gray_text;
-$form_background: $gray_background;
 $main_text_color: $black_text;
-$description_text_color: $gray_text;
-$delete_text_color: $attention_color;
-$discount_color: $attention_color;
 $checkbox_color: $blue_color;
-$line_color: rgba(0, 26, 52, 0.163844);
 
 .cart {
-  @include container-responsive;
 
-  &__header {
-    display: flex;
-    align-items: baseline;
-    margin-bottom: 34px;
-  }
+  &__input {
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border-width: 0;
+    background-color: $checkbox_color;
 
-  &__title {
-    font-size: 30px;
-    font-weight: 800;
-    line-height: 1.26;
-    color: $title_color;
-  }
+    &::after {
+      position: absolute;
+      content: '';
+      top: 3px;
+      left: 4px;
+      width: 9px;
+      height: 9px;
+      background-image: url('~/assets/images/icons/check-icon.svg');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
 
-  &__products {
-    @include ul-reset;
-  }
-
-  &__products-count {
-    color: $products_count;
-    font-size: 16px;
-    line-height: 1.3;
-    margin-left: 9px;
-  }
-
-  &__form {
-    max-width: 696px;
-    margin-right: auto;
-    border: 1px solid red;
-  }
-
-  &__head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: $form_background;
-    font-size: 14px;
-    line-height: 1.28;
-    min-height: 50px;
-    padding: 0 24px;
-    box-sizing: border-box;
-  }
-
-  &__input-checkbox {
-    //display: none;
-
-    & + span {
+    &--unchecked {
+      cursor: pointer;
       position: relative;
       display: inline-block;
       width: 16px;
@@ -69,121 +38,21 @@ $line_color: rgba(0, 26, 52, 0.163844);
       border: 2px solid $checkbox_color;
       background-color: transparent;
     }
+  }
 
-    &:checked + span {
-      position: relative;
-      display: inline-block;
-      width: 16px;
-      height: 16px;
-      border-radius: 4px;
-      border-width: 0;
-      background-color: $checkbox_color;
+  &__input-checkbox {
+    position: absolute;
+    visibility: hidden;
+  }
 
-      &::after {
-        position: absolute;
-        content: '';
-        top: 3px;
-        left: 4px;
-        width: 9px;
-        height: 9px;
-        background-image: url('~/assets/images/icons/check-icon.svg');
-        background-size: cover;
-        background-repeat: no-repeat;
-      }
-    }
+  &__input-label {
+    font-size: 14px;
+    line-height: 1.28;
+    margin-left: 16px;
   }
 
   &__check-all {
-    color: $main_text_color;
-  }
-
-  &__delete-checked {
-    color: $delete_text_color;
-  }
-
-  &__order-title {
-    font-size: 20px;
-    font-weight: 800;
-    line-height: 1.3;
-    margin-bottom: 16px;
-  }
-
-  &__info {
-    background-color: $form_background;
-    box-sizing: border-box;
-    padding: 24px;
-  }
-
-  &__pre-price-wrapper {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-  }
-
-  &__pre-price-title {
-    font-size: 16px;
-    line-height: 1.25;
-    color: $main_text_color;
-  }
-
-  &__pre-price {
-    font-size: 16px;
-    font-weight: 800;
-    line-height: 1.25;
-    color: $main_text_color;
-  }
-
-  &__pre-result {
-    border-bottom: 1px solid $line_color;
-    margin-bottom: 16px;
-  }
-
-  &__result-title {
-    font-size: 20px;
-    font-weight: 800;
-    line-height: 1.3;
-    color: $main_text_color;
-  }
-
-  &__discount-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-  }
-
-  &__discount-title {
-    font-size: 16px;
-    line-height: 1.25;
-    color: $main_text_color;
-  }
-
-  &__discount {
-    font-size: 16px;
-    font-weight: 800;
-    line-height: 1.25;
-    color: $discount_color;
-  }
-
-  &__result {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 32px;
-  }
-
-  &__result-title {
-    font-size: 20px;
-    font-weight: 800;
-    line-height: 1.3;
-    color: $main_text_color;
-  }
-
-  &__result-price {
-    font-size: 20px;
-    font-weight: 800;
-    line-height: 1.3;
     color: $main_text_color;
   }
 }

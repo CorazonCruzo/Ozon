@@ -1,15 +1,17 @@
 <div class="cart__check-all">
   <input
     class="cart__input-checkbox"
-    [(ngModel)]="isChecked"
+    [ngModel]="isChecked"
     (change)="onCheckAll()"
     [id]="'input1'" type="checkbox"
     [disabled]="isDisable"
   >
   <span
     (click)="onSpanCheck()"
+    [class.cart__input]="isChecked && !isDisable"
+    [class.cart__input--unchecked]="!isChecked||isDisable"
   ></span>
-  <label [for]="'input1'">
+  <label [for]="'input1'" class="cart__input-label">
     Выбрать все
   </label>
 </div>

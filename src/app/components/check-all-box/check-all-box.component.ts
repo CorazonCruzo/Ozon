@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../../shared/services/products.service';
 
 @Component({
   selector: 'app-check-all-box',
@@ -6,24 +7,25 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./check-all-box.component.scss']
 })
 export class CheckAllBoxComponent implements OnInit {
-  @Input() isChecked: boolean;
-  @Input() isDisable: boolean;
-  @Output() changed: EventEmitter<boolean>;
 
-  constructor() {
-    this.changed = new EventEmitter<boolean>();
+  constructor(private service: ProductsService) {}
+
+  ngOnInit() {}
+
+  get isChecked() {
+    return this.service.isCheckedAllInCart;
   }
 
-  ngOnInit() {
+  get isDisable() {
+    return this.service.getProductsInCart().length === 0;
   }
 
   onCheckAll() {
-    this.changed.emit(this.isChecked);
+    this.service.toggleCheckAllProductsInCart();
   }
 
   onSpanCheck() {
     if (!this.isDisable) {
-      this.isChecked = !this.isChecked;
       this.onCheckAll();
     }
   }
