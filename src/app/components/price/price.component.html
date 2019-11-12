@@ -5,13 +5,13 @@
   <div class="cart__pre-result">
     <div class="cart__pre-price-wrapper">
       <div class="cart__pre-price-title">
-        {{countOfProducts}} {{word}} на сумму
+        {{countOfCheckedProducts}} {{word}} на сумму
       </div>
       <div class="cart__pre-price">
         {{price}}&#8381;
       </div>
     </div>
-    <div class="cart__discount-wrapper">
+    <div class="cart__discount-wrapper" *ngIf="service.getDisountOfProducts() > 0">
       <div class="cart__discount-title">
         Скидка
       </div>
@@ -25,7 +25,15 @@
       Общая стоимость
     </div>
     <div class="cart__result-price">
-      {{price - discount}}&#8381;
+      {{totalPrice}}&#8381;
     </div>
+  </div>
+  <div class="cart__send">
+    <div class="cart__description">
+      Доступные способы и время доставки можно выбрать при оформлении заказа
+    </div>
+    <button class="cart__button cart__button-submit" (click)="onSubmit()">
+      Оформить
+    </button>
   </div>
 </div>
