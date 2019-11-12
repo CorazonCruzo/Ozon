@@ -1,34 +1,20 @@
-<p>cart works!</p>
-
 <div class="cart">
   <div class="cart__header">
     <div class="cart__title">
       Корзина
     </div>
     <div class="cart__products-count">
-      {{countOfProducts}} {{word}}
+      {{countOfProducts}} {{word(countOfProducts)}}
     </div>
   </div>
   <form class="cart__form">
     <div class="cart__head">
-      <app-check-all-box
-        (changed)="onCheckAll($event)"
-        [isChecked]="isCheckedAll"
-        [isDisable]="products.length === 0"
-      ></app-check-all-box>
-      <app-delete-selected-box
-        (clicked)="onDeleteChecked()"
-      ></app-delete-selected-box>
+      <app-check-all-box></app-check-all-box>
+      <app-delete-selected-box></app-delete-selected-box>
     </div>
-    <app-product-list
-      [products]="products"
-      (changed)="onChange($event)"
-    ></app-product-list>
+    <app-product-list></app-product-list>
     <app-price
-      [price]="price"
-      [discount]="discount"
-      [countOfProducts]="countOfProducts"
-      [word]="word"
+      [word]="word(countOfCheckedProducts)"
     ></app-price>
   </form>
 </div>
