@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {ProductsService} from '../../shared/services/products.service';
+import { Component, OnInit } from '@angular/core';
+import { ProductsService } from '../../shared/services/products.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,11 +8,9 @@ import {ProductsService} from '../../shared/services/products.service';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private service: ProductsService) {
-  }
+  constructor(private service: ProductsService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   get countOfProducts() {
     return this.service.countProductsInCart;
